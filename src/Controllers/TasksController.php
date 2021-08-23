@@ -8,7 +8,6 @@ use MVC\src\Models\TaskRepository;
 
 class TasksController extends Controller
 {
-
     private $taskRepo;
 
     public function __construct()

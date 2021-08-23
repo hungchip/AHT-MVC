@@ -23,8 +23,8 @@ class Dispatcher
         $name = ucfirst($this->request->controller) . "Controller"; //$name = TasksController
         // $file = ROOT . 'Controllers/' . $name . '.php'; //đúng
         $file = "MVC\\src\\Controllers\\" . $name; // cấu trúc psr-4
-        $controller = new $file(); //$file = MVC\\src\\Controllers\\TasksController -> tạo 1 đối tượng TasksController
 
+        $controller = new $file(); //$file = MVC\\src\\Controllers\\TasksController -> tạo 1 đối tượng TasksController
         return $controller;
     }
 

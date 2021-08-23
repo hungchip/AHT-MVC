@@ -9,7 +9,6 @@ class Controller
 
     public function set($data)
     {
-        // var_dump($data);
         $this->vars = array_merge($this->vars, $data);
     }
 
@@ -18,13 +17,15 @@ class Controller
         extract($this->vars);
 
         ob_start();
-        
+
         $thisClass = explode('\\', get_class($this)); // get_class($this) lấy ra class của đối tượng $this MVC\src\Controllers\TasksController
         $file = "Views/" . ucfirst(str_replace('Controller', '', end($thisClass))) . '/' . $filename . '.php';
         // require ROOT . "/Views/Tasks/index.php"; đúng
 
         require ROOT . $file; // trả về view
         $content_for_layout = ob_get_clean(); //content_for_layout chứa index.php
+        // var_dump($this);
+        // die;
         if ($this->layout == false) {
             $content_for_layout;
         } else {

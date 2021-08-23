@@ -21,7 +21,7 @@
 
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="ROOT">MVC Todo</a>
+    <a class="navbar-brand" href="/mvc-remake/tasks/index">MVC Todo</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -29,7 +29,10 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/mvc-remake/tasks/index">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="/mvc-remake/student/index">Student <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
@@ -40,9 +43,7 @@
     <div class="starter-template">
 
         <?php
-            echo $content_for_layout;
-            // echo '<pre>', var_dump($content_for_layout), '</pre>';
-            // die;
+        echo $content_for_layout;
         ?>
 
     </div>

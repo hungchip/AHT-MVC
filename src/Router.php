@@ -7,7 +7,8 @@ class Router
     public static function parse($url, $request)
     {
         $url = trim($url);
-        
+        // var_dump($url);
+        // die;
         if ($url == "/mvc-remake/") {
             $request->controller = "tasks";
             $request->action = "index";

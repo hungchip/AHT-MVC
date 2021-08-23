@@ -3,7 +3,6 @@
 namespace MVC\src\Models;
 
 use MVC\src\Core\ResourceModel;
-use MVC\src\Models\TaskModel;
 
 class TaskResourceModel extends ResourceModel
 {

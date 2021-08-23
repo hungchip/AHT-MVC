@@ -22,8 +22,7 @@ class ResourceModel implements ResourceModelInterface
 
         $arrayModel = $model->getProperties();
         $arrValue = [];
-        // var_dump($arrayModel);
-        echo '<br/>';
+
         if ($model->getId() === null) {
             unset($arrayModel['id']); // loại bỏ id ra khỏi mảng
         }
@@ -33,29 +32,31 @@ class ResourceModel implements ResourceModelInterface
         }
 
         $arr2 = [];
+
         foreach (array_keys($arrayModel) as $key => $value) {
-            if ($value !== 'id' || $value !== 'created_at') {
+            if ($value !== 'id') {
                 array_push($arr2, $value . ' = :' . $value);
             }
         }
-
         $arr2 = implode(',', $arr2);
         $colName = implode(',', array_keys($arrayModel));
         $val = implode(',', $arrValue);
         // var_dump($arrayModel);
+        
         // die;
         if ($model->getId() === null) {
-            $sql = "INSERT INTO $this->table ($colName) VALUES ($val)";
+            $sql = "INSERT INTO {$this->table} ({$colName}) VALUES ({$val})";
             $req = Database::getBdd()->prepare($sql);
             $date = array("created_at" => date("Y-m-d H:i:s"), "updated_at" => date("Y-m-d H:i"));
             $data = array_merge($arrayModel, $date);
             return $req->execute($data);
         } else {
             $arr2 = str_replace(",created_at = :created_at", "", $arr2);
-            $sql = "UPDATE $this->table SET $arr2 WHERE id = :id";
+            unset($arrayModel['created_at']);
+            $sql = "UPDATE {$this->table} SET {$arr2} WHERE id = :id";
             $req = Database::getBdd()->prepare($sql);
             $date = array("id" => $model->getId(), "updated_at" => date("Y-m-d H:i"));
-            unset($arrayModel['created_at']);
+
             $data = array_merge($arrayModel, $date);
             return $req->execute($data);
         }
@@ -63,14 +64,14 @@ class ResourceModel implements ResourceModelInterface
 
     public function delete($model)
     {
-        $sql = "DELETE FROM $this->table WHERE id = {$model->getId()}";
+        $sql = "DELETE FROM {$this->table} WHERE id = {$model->getId()}";
         $req = Database::getBdd()->prepare($sql);
         return $req->execute();
     }
 
     public function get($id)
     {
-        $sql = "SELECT * FROM $this->table WHERE id = $id";
+        $sql = "SELECT * FROM {$this->table} WHERE id = $id";
         $req = Database::getBdd()->prepare($sql);
         $req->execute();
         return $req->fetch();
@@ -79,7 +80,7 @@ class ResourceModel implements ResourceModelInterface
     public function getAll($model)
     {
         $properties = implode(',', array_keys($model->getProperties()));
-        $sql = "SELECT $properties FROM $this->table";
+        $sql = "SELECT $properties FROM {$this->table}";
         $req = Database::getBdd()->prepare($sql);
         $req->execute();
         return $req->fetchAll();
