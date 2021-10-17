@@ -14,14 +14,14 @@
         <?php
             foreach ($students as $student) {
             echo '<tr>';
-            echo "<td>" . $student['id'] . "</td>";
-            echo "<td>" . $student['name'] . "</td>";
-            echo "<td>" . $student['age'] . "</td>";
-            echo "<td>" . $student['class_name'] . "</td>";
+            echo "<td>" . $student->getId() . "</td>";
+            echo "<td>" . $student->getName() . "</td>";
+            echo "<td>" . $student->getAge() . "</td>";
+            echo "<td>" . $student->getClassName() . "</td>";
             echo "<td class='text-center'>
-            <a class='btn btn-info btn-xs' href='/mvc-remake/student/edit/" . $student["id"] . "' >
+            <a class='btn btn-info btn-xs' href='/mvc-remake/student/edit/" . $student->getId() . "' >
             <span class='glyphicon glyphicon-edit'></span> Edit</a> 
-            <a href='/mvc-remake/student/delete/" . $student["id"] . "' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-remove'></span> Del</a>
+            <a href='/mvc-remake/student/delete/" . $student->getId() . "' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-remove'></span> Del</a>
             </td>";
             echo "</tr>";
             }

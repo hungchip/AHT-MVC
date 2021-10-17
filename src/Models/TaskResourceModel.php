@@ -8,6 +8,6 @@ class TaskResourceModel extends ResourceModel
 {
     public function __construct($table, $id, TaskModel $task)
     {
-        parent::_init($table, $id, $task);
+        $this->_init($table, $id, $task);
     }
 }

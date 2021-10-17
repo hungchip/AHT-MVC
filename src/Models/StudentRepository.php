@@ -8,7 +8,7 @@ class StudentRepository
 
     public function __construct()
     {
-        $this->studentResource = new StudentResource('students', null, new StudentModel);
+        $this->studentResource = new StudentResource('students', 'id', new StudentModel);
     }
 
     public function get($id)

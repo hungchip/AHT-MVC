@@ -44,7 +44,6 @@ class TasksController extends Controller
         extract($_POST);
         $task = new TaskModel();
         $data["task"] = $this->taskRepo->get($id);
-
         if (isset($title)) {
             $task->setId($id);
             $task->setTitle($title);
@@ -54,7 +53,6 @@ class TasksController extends Controller
                 header("Location: " . WEBROOT . "tasks/index");
             }
         }
-
         $this->set($data);
         $this->render("edit");
     }

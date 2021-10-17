@@ -9,13 +9,13 @@ class Controller
 
     public function set($data)
     {
-        $this->vars = array_merge($this->vars, $data);
+        // $this->vars = array_merge($this->vars, $data);
+        $this->vars = $data;
     }
 
     public function render($filename)
     {
         extract($this->vars);
-
         ob_start();
 
         $thisClass = explode('\\', get_class($this)); // get_class($this) lấy ra class của đối tượng $this MVC\src\Controllers\TasksController
@@ -25,7 +25,7 @@ class Controller
         require ROOT . $file; // trả về view
         $content_for_layout = ob_get_clean(); //content_for_layout chứa index.php
         // var_dump($this);
-        // die;
+
         if ($this->layout == false) {
             $content_for_layout;
         } else {
